@@ -1,0 +1,10 @@
+create uboot.img
+./tools/loaderimage --pack --uboot ./u-boot-dtb.bin uboot.img
+
+sudo dd if=./uboot.img of=/dev/sdc ibs=1M obs=1M seek=8 count=4
+
+
+make -j4; ./tools/loaderimage --pack --uboot ./u-boot-dtb.bin uboot.img
+umount /dev/sdc1; sleep 1; sudo dd if=./uboot.img of=/dev/sdc ibs=1M obs=1M seek=8 count=4;sync
+
+
