@@ -486,7 +486,13 @@
 		BOOTENV_SET_VIRTIO_NEED_INIT                              \
 		"for target in ${boot_targets}; do "                      \
 			"run bootcmd_${target}; "                         \
-		"done\0"
+		"done\0" \
+		"bootargs=earlycon=uart8250,mmio32,0xff1a0000 swiotlb=1 console=ttyFIQ0 rootwait root=/dev/mmcblk0p1 rw\0" \
+		"fdt_addr_r=0x01f00000\0" \
+		"kernel_addr_r=0x02080000\0" \
+		"loadfdt=ext4load mmc 1:1 $fdt_addr_r boot/rk3399-nanopi4-rev01.dtb\0" \
+		"loadimage=ext4load mmc 1:1 $kernel_addr_r boot/Image\0" \
+		"bootcmd=run loadimage; run loadfdt; booti $kernel_addr_r - $fdt_addr_r\0"
 
 #ifndef CONFIG_BOOTCOMMAND
 #define CONFIG_BOOTCOMMAND "run distro_bootcmd"
