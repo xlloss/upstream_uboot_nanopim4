@@ -41,7 +41,7 @@
 
 /* FAT sd card locations. */
 #define CONFIG_SYS_SDRAM_BASE		0
-#define SDRAM_MAX_SIZE			0xf8000000
+#define SDRAM_MAX_SIZE			0x80000000
 
 #ifndef CONFIG_SPL_BUILD
 
