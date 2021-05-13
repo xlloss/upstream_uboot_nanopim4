@@ -492,7 +492,9 @@
 		"kernel_addr_r=0x02080000\0" \
 		"loadfdt=ext4load mmc 1:1 $fdt_addr_r boot/rk3399-nanopi4-rev01.dtb\0" \
 		"loadimage=ext4load mmc 1:1 $kernel_addr_r boot/Image\0" \
-		"bootcmd=run loadimage; run loadfdt; booti $kernel_addr_r - $fdt_addr_r\0"
+		"bootcmd=run loadimage; run loadfdt; booti $kernel_addr_r - $fdt_addr_r\0" \
+		"get_uboot=tftp 0x800800 $serverip:uboot.img\0" \
+		"uboot_update=mmc dev 1; mmc write 0x800800 0x4000 0x2000\0"
 
 #ifndef CONFIG_BOOTCOMMAND
 #define CONFIG_BOOTCOMMAND "run distro_bootcmd"
